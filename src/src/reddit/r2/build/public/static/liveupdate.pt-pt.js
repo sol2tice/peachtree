@@ -1,0 +1,1 @@
+liveupdate.pt-pt.PhJvUfrDm0w.js

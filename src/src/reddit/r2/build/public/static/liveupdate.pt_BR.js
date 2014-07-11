@@ -1,0 +1,1 @@
+liveupdate.pt_BR.Vglsr3lI7Pw.js

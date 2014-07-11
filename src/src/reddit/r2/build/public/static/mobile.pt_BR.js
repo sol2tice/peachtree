@@ -1,0 +1,1 @@
+mobile.pt_BR.LzIrkXrdxdI.js
