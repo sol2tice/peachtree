@@ -1,0 +1,3 @@
+[r2.plugin]
+about = reddit_about:About
+

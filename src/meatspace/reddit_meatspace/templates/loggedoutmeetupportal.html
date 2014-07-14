@@ -1,0 +1,16 @@
+<%inherit file="meetupportal.html"/>
+<%namespace name="utils" file="utils.html"/>
+
+<%block name="buttons">
+  <nav>
+    <ul>
+      <li>
+      <a class="meatspace-button" href="${thing.find_meetup_url}">${_("nearby meetups")}</a>
+      </li>
+    </ul>
+  </nav>
+</%block>
+
+<%block name="content">
+  ${utils._md("Log in to get your badge and get started.", wrap=True)}
+</%block>

@@ -1,0 +1,68 @@
+<%!
+  from r2.lib.pages import UserText
+
+  CONTRIBUTOR_CUTOFF = 3
+%>
+
+<%namespace name="utils" file="utils.html" />
+
+<header>
+  <h1 id="liveupdate-title">${thing.event.title}</h1>
+
+  <div id="liveupdate-statusbar" class="${thing.event.state}">
+    <p class="state">
+    % if thing.event.state == "complete":
+      ${_("no further updates")}
+    % else:
+      ${_("disconnected")}
+    % endif
+    </p>
+  </div>
+</header>
+
+% if c.liveupdate_permissions.allow("update"):
+<div id="new-update-form" class="prettyform">
+  ${UserText(None, text="", editable=True, creating=True, name="body", have_form=False)}
+
+  <div class="save-button">
+    <button class="btn" type="button" onclick="return post_pseudo_form('#new-update-form', 'live/${c.liveupdate_event._id}/update')">
+      ${_("make update")}
+    </button>
+    &#32;
+    <span class="status error"></span>
+  </div>
+</div>
+% endif
+
+<div class="main-content">
+% if thing.show_sidebar:
+<aside class="sidebar">
+  % if thing.event.description:
+  <section id="liveupdate-description" class="md">
+    ${utils.md(thing.event.description)}
+  </section>
+  % endif
+  <section id="discussions" title="${_("threads on reddit linking to this page")}">
+    <h1>${_("discussions")}</h1>
+    ${thing.discussions}
+  </section>
+  <section id="contributors">
+    <h1>${_("updated by")}</h1>
+
+    <ul>
+      % for contributor in thing.contributors[:CONTRIBUTOR_CUTOFF]:
+      <li>${contributor}</li>
+      % endfor
+    </ul>
+
+    % if len(thing.contributors) > CONTRIBUTOR_CUTOFF:
+    <a href="/live/${c.liveupdate_event._id}/contributors" class="more-contributors">${unsafe(_("&hellip; and %(count)s more &raquo;") % dict(count=len(thing.contributors) - CONTRIBUTOR_CUTOFF))}</a>
+    % endif
+  </section>
+
+</aside>
+% endif
+
+${thing.listing}
+
+</div>

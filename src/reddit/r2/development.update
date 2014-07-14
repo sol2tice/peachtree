@@ -1,0 +1,24 @@
+# after editing this file, run "make ini" to
+# generate a new development.ini
+
+[DEFAULT]
+debug = true
+
+disable_ads = true
+disable_captcha = true
+disable_ratelimit = true
+disable_require_admin_otp = true
+
+page_cache_time = 0
+
+domain = 192.168.1.71 
+
+plugins = about, liveupdate, meatspace
+
+media_provider = filesystem
+media_fs_root = /srv/www/media
+media_fs_base_url_http = http://%(domain)s/media/
+media_fs_base_url_https = https://%(domain)s/media/
+
+[server:main]
+port = 8001
